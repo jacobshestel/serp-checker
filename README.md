@@ -1,87 +1,97 @@
-# Google Organic Rank Checker (Laravel + DataForSEO v3)
+# Google Organic Rank Checker (Laravel + DataForSEO API)
 
-A simple one–page Laravel application that allows you to check the organic Google search rank of a given website for a specific keyword, location, and language using the **DataForSEO API v3**.
+## 🚀 Quick Start
 
----
+For experienced users — just 5 commands:
 
-## Features
-- Input form with fields: **Keyword**, **Website (domain or URL)**, **Location**, **Language**.
-- Sends request to **DataForSEO SERP → Google → Organic (live/advanced)**.
-- Displays the **organic rank** of the specified website (or shows a message if the site is not found in the top results).
-- Error handling for invalid input or API errors.
-- Lightweight, runs locally without Docker.
+```bash
+git clone git@github.com:jacobshestel/serp-checker.git
+cd serp-checker
+composer install
+cp .env.example .env
+php artisan key:generate
+php artisan serve
+```
 
----
-
-## Requirements
-- PHP 8.2+
-- Composer
-- DataForSEO API account and credentials (Login & Password)
+➡ Open [http://127.0.0.1:8000](http://127.0.0.1:8000) in your browser.  
+⚠️ Don’t forget to put your **DataForSEO credentials** into `.env`.
 
 ---
 
-## Installation & Setup
+## 📖 Detailed Setup
 
-1. **Clone the repository and install dependencies:**
-   ```bash
-   git clone https://github.com/your_repo/serp-checker.git
-   cd serp-checker
-   composer install
-   ```
+### 1. Clone the repository
+```bash
+git clone git@github.com:jacobshestel/serp-checker.git
+cd serp-checker
+```
 
-2. **Copy `.env.example` and configure your credentials:**
-   ```bash
-   cp .env.example .env
-   php artisan key:generate
-   ```
+### 2. Install dependencies
+```bash
+composer install
+```
 
-   Then edit `.env` and add your DataForSEO credentials:
-   ```env
-   DATAFORSEO_LOGIN=your_login@email.com
-   DATAFORSEO_PASSWORD=your_api_password
-   ```
+### 3. Copy environment file
+```bash
+cp .env.example .env
+```
 
-3. **Run the development server:**
-   ```bash
-   php artisan serve
-   ```
-   Open [http://127.0.0.1:8000](http://127.0.0.1:8000) in your browser.
+### 4. Update `.env` with your credentials
+```dotenv
+DATAFORSEO_LOGIN=your_login@email.com
+DATAFORSEO_PASSWORD=your_password
+```
 
----
+### 5. Generate Laravel app key
+```bash
+php artisan key:generate
+```
 
-## Usage
-1. Enter:
-   - **Keyword** (e.g., `Laravel framework`)
-   - **Website** (e.g., `laravel.com` or `https://laravel.com`)
-   - **Location** (e.g., `United States` or `Germany`)
-   - **Language** (e.g., `English`, `German`)
-2. Click **Search**.
-3. The app will display the **organic rank** of the website in Google search results (or a message that it was not found in the top 100).
+### 6. Start local server
+```bash
+php artisan serve
+```
 
----
-
-## Notes
-- The app uses the endpoint:  
-  `POST v3/serp/google/organic/live/advanced`
-- Default search domain is `google.com`, depth = 50 results (can be adjusted).
-- If the site is not found, try increasing depth to 100 or adjusting location/language.
-- In case of timeouts, reduce depth or retry later.
+### 7. Open in browser
+[http://127.0.0.1:8000](http://127.0.0.1:8000)
 
 ---
 
-## Example
-**Input:**
-- Keyword: `Laravel`
-- Website: `laravel.com`
-- Location: `United States`
-- Language: `English`
+## 📝 Features
 
-**Output:**
-- Rank: `1`
-- URL: `https://laravel.com/`
-- Title: `Laravel - The PHP Framework For Web Artisans`
+- Input form with:
+  - Search keyword
+  - Website (domain or URL)
+  - Location
+  - Language
+- Requests **DataForSEO Google Organic API (Live Advanced)**
+- Shows:
+  - Website rank (if found in Top 100)
+  - Link and title
+  - Or message “not found”
 
 ---
 
-## License
-This project is created as a **test assignment** and is intended for demonstration purposes only.
+## 🧪 Example
+
+Search: `Laravel`  
+Site: `laravel.com`  
+Location: `United States`  
+Language: `English`  
+
+➡ Result: **Rank #1**
+
+---
+
+## 📌 Notes
+
+- Project does **not require a database**.  
+- Default search engine: **google.com**, device: **desktop**.  
+- API usage consumes credits — make sure your DataForSEO account has balance.
+
+---
+
+## 📄 License
+
+This project is for educational/testing purposes only.  
+Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
